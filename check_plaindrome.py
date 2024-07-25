@@ -1,5 +1,6 @@
 # write a program to check palindrome
 
+
 def palindrome(s):
     return s == s[::-1]
 
