@@ -12,8 +12,8 @@ class Animal:
         print("Species:", self.species)
 
 # Creating object
-animal = Animal("Dog")  # This will throw an error that __init__() missing 1 required positional argument: 'species'
-animal.display()
+# animal = Animal("Dog")  This will throw an error that __init__() missing 1 required positional argument: 'species'
+# animal.display()
 
 # Hack to create multiple constructors
 # We can create multiple constructors by checking the number of parameters
@@ -67,3 +67,67 @@ obj3 = MyClass("Value 1", "Value 2")
 print(obj1.param1, obj1.param2)
 print(obj2.param1, obj2.param2)
 print(obj3.param1, obj3.param2)
+
+# This is the recommended way to create multiple constructors in Python.
+# It makes the code clean and easy to understand.
+
+# Creating objects using *args
+class Animal1:
+    def __init__(self, *args):
+        if len(args) == 1:
+            self.name = args[0]
+        elif len(args) == 2:
+            self.name = args[0]
+            self.species = args[1]
+        else:
+            self.name = args[0]
+            self.species = args[1]
+            self.sound = args[2]
+
+    def display(self):
+        print("Name:", self.name)
+        print("Species:", self.species)
+        print("Sound:", self.sound)
+
+# Creating objects using different constructors
+animal1 = Animal1("Dog")
+animal1.display()
+
+animal2 = Animal1("Dog", "Mammal")
+animal2.display()
+
+animal3 = Animal1("Dog", "Mammal", "Bark")
+animal3.display()
+
+# This way, we can create multiple constructors with different parameters using *args in Python.
+
+# Creating objects using **kwargs
+# We can also create multiple constructors using **kwargs in Python.
+# The **kwargs parameter allows us to pass a variable number of keyword arguments to the constructor.
+
+class Animal2:
+    def __init__(self, **kwargs):
+        if 'name' in kwargs:
+            self.name = kwargs['name']
+        if 'species' in kwargs:
+            self.species = kwargs['species']
+        if 'sound' in kwargs:
+            self.sound = kwargs['sound']
+
+    def display(self):
+        print("Name:", self.name)
+        print("Species:", self.species)
+        print("Sound:", self.sound)
+
+# Creating objects using different constructors
+
+animal1 = Animal2(name="Dog")
+animal1.display()
+
+animal2 = Animal2(name="Dog", species="Mammal")
+animal2.display()
+
+animal3 = Animal2(name="Dog", species="Mammal", sound="Bark")
+animal3.display()
+
+# This way, we can create multiple constructors with different parameters using **kwargs in Python.
